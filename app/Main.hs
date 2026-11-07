@@ -1,7 +1,14 @@
+
 module Main where
 
-import HaskellSay (haskellSay)
+import Sound.PortMidi (initialize, countDevices, terminate)
 
 main :: IO ()
-main = haskellSay "Hello, Haskell!"
+main = do
+  _ <- initialize
+  n <- countDevices
+  putStrLn ("MIDI Devices: " ++ show n)
+  _ <- terminate
+  return ()
+  
 
